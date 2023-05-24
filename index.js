@@ -4,6 +4,8 @@ const cors = require('cors');
 const app = express();
 
 app.use(cors())
+app.use(express.static('build'))
+
 app.use(express.json());
 
 morgan.token('body', req => {
@@ -30,7 +32,7 @@ let persons = [
   {
     id: 4,
     name: "huy",
-    number: "39-23-6423122",
+    number: "0000",
   },
 ];
 const generateId = () => {
@@ -84,6 +86,6 @@ app.post('/api/persons', (request, response) => {
   response.json(person)
 })
 
-const PORT = 3001;
+const PORT = process.env.PORT || 3001
 app.listen(PORT);
 console.log(`Server running on port ${PORT}`);
